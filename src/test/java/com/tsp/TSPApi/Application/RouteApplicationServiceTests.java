@@ -1,7 +1,7 @@
 package com.tsp.TSPApi.Application;
 
 import com.tsp.TSPApi.Entities.RouteResponse;
-import com.tsp.TSPApi.TourManager;
+import com.tsp.TSPApi.Helpers.TourManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

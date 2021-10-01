@@ -14,9 +14,6 @@ public class TspApiApplication {
 
 	public static void main(String[] args) {
 
-		// Initialize population
-		Population pop = new Population(Constants.POPULATION_SIZE, true);
-		System.out.println("Initial distance: " + pop.getFittest().getDistance());
 
 		GA geneticAlgorithm = new GA(Constants.MUTATION_RATE);
 

@@ -2,7 +2,6 @@ package com.tsp.TSPApi.Helpers;
 
 import com.tsp.TSPApi.Entities.City;
 import com.tsp.TSPApi.Entities.Constants;
-import com.tsp.TSPApi.TourManager;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;

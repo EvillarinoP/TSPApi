@@ -1,12 +1,14 @@
-package com.tsp.TSPApi;
+package com.tsp.TSPApi.Helpers;
 
 import com.tsp.TSPApi.Entities.City;
+import lombok.Getter;
 
 import java.util.ArrayList;
 
 public class TourManager {
 
     // Holds our cities
+    @Getter
     private static ArrayList destinationCities = new ArrayList<City>();
 
     // Adds a destination city

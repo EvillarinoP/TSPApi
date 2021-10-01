@@ -1,11 +1,11 @@
 package com.tsp.TSPApi;
 
 import com.tsp.TSPApi.Entities.City;
+import com.tsp.TSPApi.Helpers.TourManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-// TODO: Cambiar el nombre Tour por Route. Es más descriptivo.
 public class Tour {
 
     // Holds our tour of cities
@@ -15,6 +15,7 @@ public class Tour {
     private int distance = 0;
 
     // Constructs a blank tour
+    // TODO: Mirar esto!!
     public Tour(){
         for (int i = 0; i < TourManager.numberOfCities(); i++) {
             tour.add(null);
@@ -25,15 +26,7 @@ public class Tour {
         this.tour = tour;
     }
 
-    // Creates a random individual
-    public void generateIndividual() {
-        // Loop through all our destination cities and add them to our tour
-        for (int cityIndex = 0; cityIndex < TourManager.numberOfCities(); cityIndex++) {
-            setCity(cityIndex, TourManager.getCity(cityIndex)); // TODO: en vez de un loop, devolver la lista entera del tirón??
-        }
-        // Randomly reorder the tour
-        Collections.shuffle(tour);
-    }
+
 
     // Gets a city from the tour
     public City getCity(int tourPosition) {
@@ -48,16 +41,8 @@ public class Tour {
         distance = 0;
     }
 
-    // Gets the tours fitness
-    public double getFitness() {
-        if (fitness == 0) {
-            fitness = 1/(double)getDistance();
-        }
-        return fitness;
-    }
-
     // Gets the total distance of the tour
-    public int getDistance(){
+    /*public int getDistance(){
         if (distance == 0) {
             int tourDistance = 0;
             // Loop through our tour's cities
@@ -80,11 +65,11 @@ public class Tour {
             distance = tourDistance;
         }
         return distance;
-    }
+    }*/
 
     // Get number of cities on our tour
     // TODO: cambiar el nombre a getTourSize()
-    public int tourSize() {
+    public int getSize() {
         return tour.size();
     }
 

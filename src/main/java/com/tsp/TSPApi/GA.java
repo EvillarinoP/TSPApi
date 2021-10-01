@@ -8,7 +8,7 @@ public class GA {
 
     private final double mutationRate;
 
-    public GA(double mutationRate) {
+    public  GA(double mutationRate) {
         this.mutationRate = mutationRate;
     }
 

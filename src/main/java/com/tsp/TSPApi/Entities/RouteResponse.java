@@ -9,9 +9,9 @@ public class RouteResponse {
 
     @Getter
     @Setter
-    public List<City> cities;
+    private int finalDistance;
 
     @Getter
     @Setter
-    public int finalDistance;
+    private List<City> cities;
 }

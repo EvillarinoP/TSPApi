@@ -33,6 +33,8 @@ public class City {
         return this.y;
     }
 
+    public String getName(){return this.name;}
+
     // Gets the distance to given city
     public double distanceTo(City city){
         int xDistance = Math.abs(getX() - city.getX());

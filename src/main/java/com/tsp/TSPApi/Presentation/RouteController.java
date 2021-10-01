@@ -20,6 +20,7 @@ public class RouteController {
 
     @GetMapping(value="/routeGA")
     public RouteResponse calculateRouteGA() {
+
         return _routeApplicationService.calculateRouteGA();
     }
 }
