@@ -1,9 +1,7 @@
 package com.tsp.TSPApi.Application;
 
-import java.util.List;
-
-import com.tsp.TSPApi.Entities.City;
+import com.tsp.TSPApi.Entities.RouteResponse;
 
 public interface IRouteApplicationService {
-
+    RouteResponse calculateRouteGA();
 }

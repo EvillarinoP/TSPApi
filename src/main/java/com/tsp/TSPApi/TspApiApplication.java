@@ -1,37 +1,26 @@
 package com.tsp.TSPApi;
 
-import org.springframework.boot.SpringApplication;
+import com.tsp.TSPApi.Entities.City;
+
 import java.util.Random;
+
+import com.tsp.TSPApi.Entities.Constants;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class TspApiApplication {
 
 	public static int FINAL_DISTANCE = 0;
-	private final static int MAX_COORDINATE = 200;
-	private final static int NUM_CITIES = 100;
-	private final static int POPULATION_SIZE = 500;
-
-	private final static double MUTATION_RATE = 0.005;
-	private final static int NUMBER_GENERATIONS = 10000;
 
 	public static void main(String[] args) {
-		Random r = new Random(1);
-
-		for (int i=1; i<=NUM_CITIES; i++) {
-			int x = r.nextInt(MAX_COORDINATE);
-			int y = r.nextInt(MAX_COORDINATE);
-			TourManager.addCity(new City(i+"", x, y));
-			System.out.println("City["+i+"] with coordinates " + x + ":" + y);
-		}
 
 		// Initialize population
-		Population pop = new Population(POPULATION_SIZE, true);
+		Population pop = new Population(Constants.POPULATION_SIZE, true);
 		System.out.println("Initial distance: " + pop.getFittest().getDistance());
 
-		GA geneticAlgorithm = new GA(MUTATION_RATE);
+		GA geneticAlgorithm = new GA(Constants.MUTATION_RATE);
 
-		for (int i = 1; i <= NUMBER_GENERATIONS; i++) {
+		for (int i = 1; i <= Constants.NUMBER_GENERATIONS; i++) {
 			pop = geneticAlgorithm.evolvePopulation(pop);
 			System.out.println("Generation " + i + ": shortest distance within population = " + pop.getFittest().getDistance() + ".  aggregate distance = " + pop.getTotalDistance());
 		}

@@ -1,5 +1,7 @@
 package com.tsp.TSPApi;
 
+import com.tsp.TSPApi.Entities.City;
+
 import java.util.Random;
 
 public class GA {
