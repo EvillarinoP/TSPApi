@@ -26,7 +26,7 @@ public class PopulationDomainService implements IPopulationDomainService{
         int totalDistance = 0;
 
         for (int i = 1; i < population.getSize(); i++) {
-             totalDistance += population.getTour(i).getDistance();
+             totalDistance += population.getTour(i).getTourDistance();
         }
 
         return totalDistance;

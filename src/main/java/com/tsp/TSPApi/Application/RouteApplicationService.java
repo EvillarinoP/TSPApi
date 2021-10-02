@@ -1,5 +1,6 @@
 package com.tsp.TSPApi.Application;
 
+import com.tsp.TSPApi.Domain.IMutationDomainService;
 import com.tsp.TSPApi.Domain.IPopulationDomainService;
 import com.tsp.TSPApi.Domain.IPopulationEvolverDomainService;
 import com.tsp.TSPApi.Entities.Constants;
@@ -23,6 +24,9 @@ public class RouteApplicationService implements IRouteApplicationService {
     @Autowired
     IPopulationEvolverDomainService _populationEvolverDomainService;
 
+    @Autowired
+    IMutationDomainService _mutationDomainService;
+
     public RouteResponse calculateRouteGA(){
 
         _tourManagerInitializer.InitializeTourManager();
@@ -31,13 +35,15 @@ public class RouteApplicationService implements IRouteApplicationService {
 
         for(int i = 0; i < Constants.NUMBER_GENERATIONS; i++){
             population = _populationEvolverDomainService.evolvePopulation(population);
-        }
 
-        Tour fittest = _populationDomainService.getFittestTour(population);
+            for (int j = 0; j < population.getSize(); j++) {
+                _mutationDomainService.mutate(population.getTour(j));
+            }
+        }
 
         return new RouteResponseBuilder()
                 .withCities(_populationDomainService.getFittestTour(population).getCities())
-                .withFinalDistance(_populationDomainService.getFittestTour(population).getDistance())
+                .withFinalDistance(_populationDomainService.getFittestTour(population).getTourDistance())
                 .build();
     }
 }

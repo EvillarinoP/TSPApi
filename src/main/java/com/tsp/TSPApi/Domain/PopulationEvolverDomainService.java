@@ -23,20 +23,14 @@ public class PopulationEvolverDomainService implements IPopulationEvolverDomainS
         Population newPopulation = new Population(population.getSize());
 
         for (int i = 0; i < newPopulation.getSize(); i++) {
-            // Select parents
+
             Random r = new Random();
             Tour parent1 = population.getTour(r.nextInt(population.getSize()));
             Tour parent2 = population.getTour(r.nextInt(population.getSize()));
-            // Crossover parents
-            Tour child = _tourMixerDomainService.crossover(parent1, parent2);
-            // Add child to new population
-            newPopulation.saveTour(i, child);
-        }
 
-        // Mutate the new population a bit to add some new genetic material
-        //TODO: Sacar este uso al application service???
-        for (int i = 0; i < newPopulation.getSize(); i++) {
-            _mutationDomainService.mutate(newPopulation.getTour(i));
+            Tour child = _tourMixerDomainService.crossover(parent1, parent2);
+
+            newPopulation.saveTour(i, child);
         }
 
         return newPopulation;

@@ -1,9 +1,6 @@
 package com.tsp.TSPApi.Entities;
 
-import com.tsp.TSPApi.Entities.City;
-import com.tsp.TSPApi.Helpers.TourManager;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Collections;
