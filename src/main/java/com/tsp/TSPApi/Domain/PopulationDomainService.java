@@ -11,7 +11,12 @@ public class PopulationDomainService implements IPopulationDomainService{
     @Autowired
     private ITourDomainService _tourDomainService;
 
-    public Population InitializePopulation(int populationSize){
+    public Population InitializePopulation(int populationSize) throws IllegalArgumentException{
+
+        if(populationSize < 0){
+            throw new IllegalArgumentException("Population size cannot be negative");
+        }
+
         Population population = new Population(populationSize);
 
         for (int i = 0; i < population.getSize(); i++) {

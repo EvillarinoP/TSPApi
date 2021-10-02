@@ -1,6 +1,7 @@
 package com.tsp.TSPApi.Entities.Domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,6 +9,7 @@ import java.util.Collections;
 public class Tour {
 
     @Getter
+    @Setter
     private ArrayList<City> cities;
 
     private double fitness = 0;
