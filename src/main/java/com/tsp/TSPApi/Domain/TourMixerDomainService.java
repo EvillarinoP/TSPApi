@@ -23,10 +23,8 @@ public class TourMixerDomainService implements ITourMixerDomainService{
             if (i > startPos && i < endPos) {
                 child.saveCity(i, parent1.getCity(i));
             }
-            else if (startPos > endPos) {
-                if (!(i < startPos && i > endPos)) {
-                    child.saveCity(i, parent1.getCity(i));
-                }
+            else if (startPos > endPos && !(i < startPos && i > endPos)) {
+                child.saveCity(i, parent1.getCity(i));
             }
         }
 
