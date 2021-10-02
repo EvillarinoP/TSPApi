@@ -1,16 +1,12 @@
 package com.tsp.TSPApi.Domain;
 
 import com.tsp.TSPApi.Entities.Population;
-import com.tsp.TSPApi.Tour;
+import com.tsp.TSPApi.Entities.Tour;
 
 public interface IPopulationDomainService {
     Population InitializePopulation(int populationSize);
 
-    Tour getTour(int index);
+    Tour getFittestTour(Population population);
 
-    void saveTour(int index, Tour tour);
-
-    Tour getFittestTour();
-
-    int getTotalDistance();
+    int getTotalDistance(Population population);
 }

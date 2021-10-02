@@ -16,7 +16,7 @@ public class TourManagerInitializer implements ITourManagerInitializer{
             int x = r.nextInt(Constants.MAX_COORDINATE);
             int y = r.nextInt(Constants.MAX_COORDINATE);
             TourManager.addCity(new City(i+"", x, y));
-            System.out.println("City["+i+"] with coordinates " + x + ":" + y);
+            // System.out.println("City["+i+"] with coordinates " + x + ":" + y);
         }
     }
 }

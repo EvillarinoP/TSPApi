@@ -1,6 +1,4 @@
-package com.tsp.TSPApi;
-
-import com.tsp.TSPApi.Entities.City;
+package com.tsp.TSPApi.OLDCODE;
 
 import java.util.Random;
 
@@ -8,7 +6,7 @@ public class GA {
 
     private final double mutationRate;
 
-    public  GA(double mutationRate) {
+    public GA(double mutationRate) {
         this.mutationRate = mutationRate;
     }
 
@@ -98,3 +96,4 @@ public class GA {
         }
     }
 }
+

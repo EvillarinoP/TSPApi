@@ -3,7 +3,7 @@ package com.tsp.TSPApi.Entities;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RouteResponse {
 
@@ -13,5 +13,5 @@ public class RouteResponse {
 
     @Getter
     @Setter
-    private List<City> cities;
+    private ArrayList<City> cities;
 }

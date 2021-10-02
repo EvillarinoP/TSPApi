@@ -1,13 +1,12 @@
-package com.tsp.TSPApi.Entities;
+package com.tsp.TSPApi.OLDCODE;
 
-import com.tsp.TSPApi.Tour;
+public class Population {
 
-public class PopulationOld {
     // Holds population of tours
     private final Tour[] tours;
 
     // Construct a population
-    public PopulationOld(int populationSize, boolean init) {
+    public Population(int populationSize, boolean init) {
         tours = new Tour[populationSize];
         if (init) {
             init();
