@@ -1,10 +1,9 @@
 package com.tsp.TSPApi.Domain;
 
 import com.tsp.TSPApi.Entities.City;
-import com.tsp.TSPApi.Entities.Constants;
 import com.tsp.TSPApi.Entities.Tour;
 import com.tsp.TSPApi.Entities.TourManager;
-import com.tsp.TSPApi.Helpers.IGeneSelector;
+import com.tsp.TSPApi.Helpers.IGeneticsHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,9 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -26,7 +22,7 @@ import static org.mockito.MockitoAnnotations.openMocks;
 public class TourMixerDomainServiceTests {
 
     @Mock
-    private IGeneSelector _geneSelectorMock;
+    private IGeneticsHelper _geneticsHelperMock;
 
     @Mock
     private TourManager _tourManagerMock;
@@ -77,7 +73,7 @@ public class TourMixerDomainServiceTests {
         Tour parent1 = new Tour(cities1);
         Tour parent2 = new Tour(cities2);
 
-        when(_geneSelectorMock.selectGene(NUM_CITIES)).thenReturn(startGene).thenReturn(endGene);
+        when(_geneticsHelperMock.selectGene(NUM_CITIES)).thenReturn(startGene).thenReturn(endGene);
 
         // Act
         Tour child = _tourMixerDomainService.crossover(parent1, parent2);
@@ -119,7 +115,7 @@ public class TourMixerDomainServiceTests {
         Tour parent1 = new Tour(cities1);
         Tour parent2 = new Tour(cities2);
 
-        when(_geneSelectorMock.selectGene(NUM_CITIES)).thenReturn(startGene).thenReturn(endGene);
+        when(_geneticsHelperMock.selectGene(NUM_CITIES)).thenReturn(startGene).thenReturn(endGene);
 
         // Act
         Tour child = _tourMixerDomainService.crossover(parent1, parent2);

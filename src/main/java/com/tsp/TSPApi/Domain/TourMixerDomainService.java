@@ -1,7 +1,7 @@
 package com.tsp.TSPApi.Domain;
 
 import com.tsp.TSPApi.Entities.Tour;
-import com.tsp.TSPApi.Helpers.IGeneSelector;
+import com.tsp.TSPApi.Helpers.IGeneticsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class TourMixerDomainService implements ITourMixerDomainService{
 
     @Autowired
-    private IGeneSelector _geneSelector;
+    private IGeneticsHelper _geneSelector;
 
     public Tour crossover(Tour parent1, Tour parent2) {
 

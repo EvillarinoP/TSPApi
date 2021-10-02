@@ -36,7 +36,6 @@ public class PopulationEvolverDomainServiceTests {
         // Assert
         for(int i = 0; i < population.getSize(); i++){
             assertTrue(population.getTour(i).getSize() > 0);
-
         }
     }
 }

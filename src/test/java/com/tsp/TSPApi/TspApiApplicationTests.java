@@ -10,8 +10,5 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class TspApiApplicationTests {
 
-    @Test
-    public void HappyPath(){
-        assertTrue(true);
-    }
+
 }
