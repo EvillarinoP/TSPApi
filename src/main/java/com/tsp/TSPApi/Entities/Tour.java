@@ -6,23 +6,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Tour {
 
     @Getter
     private ArrayList<City> cities;
 
-    @Getter
-    @Setter
     private double fitness = 0;
-
-    @Getter
-    @Setter
     private int distance = 0;
 
     public Tour(){
 
-        cities = new ArrayList<City>(TourManager.numberOfCities());
+        cities = new ArrayList<>(Collections.nCopies(TourManager.numberOfCities(),null));
     }
 
     public Tour(ArrayList<City> cities){
@@ -73,16 +69,10 @@ public class Tour {
 
 
     public void saveCity(int index, City city){
-        this.cities.set(index,city);
-    }
 
-    @Override
-    // TODO: Esto seguramente ya no sea necesario
-    public String toString() {
-        String geneString = "|";
-        for (int i = 0; i < cities.size(); i++) {
-            geneString += getCity(i)+"|";
-        }
-        return geneString;
+        this.cities.set(index,city);
+
+        fitness = 0;
+        distance = 0;
     }
 }
