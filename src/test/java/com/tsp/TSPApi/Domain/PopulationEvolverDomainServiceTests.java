@@ -1,12 +1,13 @@
 package com.tsp.TSPApi.Domain;
 
 import com.tsp.TSPApi.Entities.Constants;
-import com.tsp.TSPApi.Entities.Population;
+import com.tsp.TSPApi.Entities.Domain.Population;
 import com.tsp.TSPApi.Helpers.ITourManagerInitializer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -22,7 +23,7 @@ public class PopulationEvolverDomainServiceTests {
     private IPopulationEvolverDomainService _populationEvolverDomainService;
 
     @Test
-    public void HappyPath(){
+    public void EvolvePopulation_HappyPath_ReturnsNewPopulationWithNonEmptyTours(){
         // Arrange
         _tourManagerInitializer.InitializeTourManager();
 

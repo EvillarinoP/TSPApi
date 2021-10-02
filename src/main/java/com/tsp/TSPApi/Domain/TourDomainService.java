@@ -1,8 +1,8 @@
 package com.tsp.TSPApi.Domain;
 
-import com.tsp.TSPApi.Entities.City;
-import com.tsp.TSPApi.Entities.TourManager;
-import com.tsp.TSPApi.Entities.Tour;
+import com.tsp.TSPApi.Entities.Domain.City;
+import com.tsp.TSPApi.Entities.Domain.TourManager;
+import com.tsp.TSPApi.Entities.Domain.Tour;
 import lombok.Getter;
 import org.springframework.stereotype.Component;
 

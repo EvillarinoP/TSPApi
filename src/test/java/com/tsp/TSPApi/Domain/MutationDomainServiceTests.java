@@ -1,7 +1,7 @@
 package com.tsp.TSPApi.Domain;
 
-import com.tsp.TSPApi.Entities.City;
-import com.tsp.TSPApi.Entities.Tour;
+import com.tsp.TSPApi.Entities.Domain.City;
+import com.tsp.TSPApi.Entities.Domain.Tour;
 import com.tsp.TSPApi.Helpers.IGeneticsHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,5 +1,6 @@
-package com.tsp.TSPApi.Entities;
+package com.tsp.TSPApi.Entities.DTOs;
 
+import com.tsp.TSPApi.Entities.Domain.City;
 import lombok.Getter;
 import lombok.Setter;
 

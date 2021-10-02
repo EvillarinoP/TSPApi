@@ -1,6 +1,5 @@
-package com.tsp.TSPApi.Entities;
+package com.tsp.TSPApi.Entities.Domain;
 
-import com.tsp.TSPApi.Entities.City;
 import lombok.Getter;
 
 import java.util.ArrayList;

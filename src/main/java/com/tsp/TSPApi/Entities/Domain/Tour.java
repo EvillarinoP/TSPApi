@@ -1,4 +1,4 @@
-package com.tsp.TSPApi.Entities;
+package com.tsp.TSPApi.Entities.Domain;
 
 import lombok.Getter;
 
@@ -63,7 +63,6 @@ public class Tour {
 
         return distance;
     }
-
 
     public void saveCity(int index, City city){
 

@@ -1,7 +1,7 @@
 package com.tsp.TSPApi.Helpers;
 
-import com.tsp.TSPApi.Entities.City;
-import com.tsp.TSPApi.Entities.RouteResponse;
+import com.tsp.TSPApi.Entities.Domain.City;
+import com.tsp.TSPApi.Entities.DTOs.RouteResponse;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.tsp.TSPApi.Entities;
+package com.tsp.TSPApi.Entities.Domain;
 
 import lombok.Getter;
 import lombok.Setter;

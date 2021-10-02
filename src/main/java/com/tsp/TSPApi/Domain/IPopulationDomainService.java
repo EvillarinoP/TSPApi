@@ -1,7 +1,7 @@
 package com.tsp.TSPApi.Domain;
 
-import com.tsp.TSPApi.Entities.Population;
-import com.tsp.TSPApi.Entities.Tour;
+import com.tsp.TSPApi.Entities.Domain.Population;
+import com.tsp.TSPApi.Entities.Domain.Tour;
 
 public interface IPopulationDomainService {
     Population InitializePopulation(int populationSize);
