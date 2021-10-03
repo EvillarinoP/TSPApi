@@ -9,4 +9,6 @@ public interface IPopulationDomainService {
     Tour getFittestTour(Population population);
 
     int getTotalDistance(Population population);
+
+    Tour[] getFittestPair(Population population);
 }

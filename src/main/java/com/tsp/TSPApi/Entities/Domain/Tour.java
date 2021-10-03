@@ -12,7 +12,9 @@ public class Tour {
     @Setter
     private ArrayList<City> cities;
 
+    @Setter
     private double fitness = 0;
+
     private int distance = 0;
 
     public Tour(){

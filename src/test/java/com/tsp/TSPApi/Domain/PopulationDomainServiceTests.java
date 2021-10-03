@@ -25,6 +25,7 @@ public class PopulationDomainServiceTests {
 
     @BeforeAll
     public static void BeforeAll(){
+        TourManager.clearCities();
         for (int i=1; i<=NUM_CITIES; i++) {
             TourManager.addCity(new City(i+"", 0, 0));
         }

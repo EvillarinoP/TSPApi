@@ -25,4 +25,6 @@ public class Population {
     public Tour getTour(int index){
         return tours[index];
     }
+
+    public void deleteTour(int index) { tours[index] = null;}
 }

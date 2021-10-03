@@ -46,4 +46,22 @@ public class PopulationDomainService implements IPopulationDomainService{
         }
         return fittest;
     }
+
+    public Tour[] getFittestPair(Population population){
+        Tour fittest = population.getTour(0);
+        Tour secondFittest = population.getTour(1);
+
+        for (int i = 1; i < population.getSize(); i++) {
+            if(population.getTour(i).getFitness() > fittest.getFitness()){
+                secondFittest = fittest;
+                fittest = population.getTour(i);
+            }
+
+            if(population.getTour(i).getFitness() > secondFittest.getFitness() &&
+                population.getTour(i).getFitness() <= fittest.getFitness()){
+                secondFittest = population.getTour(i);
+            }
+        }
+        return new Tour[]{fittest,secondFittest};
+    }
 }
