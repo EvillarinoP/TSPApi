@@ -55,11 +55,11 @@ public class TournamentDomainServiceTests {
         when(_geneticsHelperMock.selectGene(anyInt())).thenReturn(1);
 
         // Act
-        Tour[] parents = _tournamentDomainService.tournament(population,tournamentSize);
+        ArrayList<Tour> parents = _tournamentDomainService.tournament(population,tournamentSize);
 
         // Assert
-        assertEquals(population.getTour(1),parents[0]);
-        assertEquals(population.getTour(2),parents[1]);
+        assertEquals(population.getTour(1),parents.get(0));
+        assertEquals(population.getTour(2),parents.get(1));
     }
 
     @Test

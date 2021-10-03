@@ -5,6 +5,8 @@ import com.tsp.TSPApi.Entities.Domain.Tour;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 public class PopulationDomainService implements IPopulationDomainService{
 
@@ -47,21 +49,37 @@ public class PopulationDomainService implements IPopulationDomainService{
         return fittest;
     }
 
-    public Tour[] getFittestPair(Population population){
-        Tour fittest = population.getTour(0);
-        Tour secondFittest = population.getTour(1);
+    public ArrayList<Tour> getFittestIndividuals(Population population, int numberOfFittestIndividuals){
+        if(numberOfFittestIndividuals > population.getSize()){
+            throw new IllegalArgumentException("The number of fittest individuals is bigger than the population size.");
+        }
 
-        for (int i = 1; i < population.getSize(); i++) {
-            if(population.getTour(i).getFitness() > fittest.getFitness()){
-                secondFittest = fittest;
-                fittest = population.getTour(i);
-            }
+        ArrayList<Tour> fittestIndividuals = new ArrayList<>();
+        for (int i = 0; i < numberOfFittestIndividuals; i++) {
+            fittestIndividuals.add(population.getTour(i));
+        }
 
-            if(population.getTour(i).getFitness() > secondFittest.getFitness() &&
-                population.getTour(i).getFitness() <= fittest.getFitness()){
-                secondFittest = population.getTour(i);
+        for(int i = numberOfFittestIndividuals; i < population.getSize(); i++){
+            Tour leastFittedTour = getLeastFittedTour(fittestIndividuals);
+            if(population.getTour(i).getFitness() > leastFittedTour.getFitness()){
+                fittestIndividuals.set(fittestIndividuals.indexOf(leastFittedTour),population.getTour(i));
             }
         }
-        return new Tour[]{fittest,secondFittest};
+
+        return fittestIndividuals;
+    }
+
+    private Tour getLeastFittedTour(ArrayList<Tour> tours){
+
+        double minFitness = tours.get(0).getFitness();
+        int minIndex = 0;
+
+        for(int i = 1; i < tours.size(); i++){
+            if(tours.get(i).getFitness() < minFitness){
+                minFitness = tours.get(i).getFitness();
+                minIndex = i;
+            }
+        }
+        return tours.get(minIndex);
     }
 }

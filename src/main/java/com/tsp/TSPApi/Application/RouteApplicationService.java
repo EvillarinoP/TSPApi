@@ -33,7 +33,7 @@ public class RouteApplicationService implements IRouteApplicationService {
         Population population = _populationDomainService.InitializePopulation(Constants.POPULATION_SIZE);
 
         for(int i = 0; i < Constants.NUMBER_GENERATIONS; i++){
-            population = _populationEvolverDomainService.evolvePopulation(population);
+            population = _populationEvolverDomainService.evolvePopulation(population,Constants.NUMBER_OF_ELITE_INDIVIDUALS);
 
             for (int j = 0; j < population.getSize(); j++) {
                 _mutationDomainService.mutate(population.getTour(j));

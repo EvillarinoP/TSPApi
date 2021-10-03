@@ -1,19 +1,20 @@
 package com.tsp.TSPApi.Domain;
 
+import com.tsp.TSPApi.Builders.PopulationBuilder;
+import com.tsp.TSPApi.Builders.TourBuilder;
 import com.tsp.TSPApi.Entities.Domain.City;
 import com.tsp.TSPApi.Entities.Domain.Population;
 import com.tsp.TSPApi.Entities.Domain.Tour;
 import com.tsp.TSPApi.Entities.Domain.TourManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class PopulationDomainServiceTests {
@@ -52,5 +53,19 @@ public class PopulationDomainServiceTests {
 
         // Act & Assert
         assertThrows(IllegalArgumentException.class, () -> _populationDomainService.InitializePopulation(popSize));
+    }
+
+    @Test
+    public void GetFittestIndividuals_GivenACorrectNumberOfEliteIndividuals_ReturnsTheFittestIndividuals(){
+        // Arrange
+        int numberOfEliteIndividuals = 2;
+        Population population = new PopulationBuilder().build();
+
+        // Act
+        ArrayList<Tour> eliteIndividuals = _populationDomainService.getFittestIndividuals(population,numberOfEliteIndividuals);
+
+        // Assert
+        assertTrue(eliteIndividuals.stream().anyMatch(x -> x == population.getTour(2)));
+        assertTrue(eliteIndividuals.stream().anyMatch(x -> x == population.getTour(4)));
     }
 }

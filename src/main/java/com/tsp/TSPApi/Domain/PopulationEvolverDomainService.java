@@ -6,6 +6,7 @@ import com.tsp.TSPApi.Entities.Domain.Tour;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 @Component
@@ -18,24 +19,24 @@ public class PopulationEvolverDomainService implements IPopulationEvolverDomainS
     private ITourMixerDomainService _tourMixerDomainService;
 
     @Autowired
-    private IMutationDomainService _mutationDomainService;
-
-    @Autowired
     private ITournamentDomainService _tournamentDomainService;
 
-    public Population evolvePopulation(Population population){
+    public Population evolvePopulation(Population population, int numberOfEliteIndividuals){
         Population newPopulation = new Population(population.getSize());
 
-        for (int i = 0; i < newPopulation.getSize(); i++) {
+        if(numberOfEliteIndividuals > 0){
+            ArrayList<Tour> eliteIndividuals = _populationDomainService.getFittestIndividuals(population,numberOfEliteIndividuals);
 
-            Random r = new Random();
+            for(int i = 0; i < numberOfEliteIndividuals; i++){
+                newPopulation.saveTour(i,eliteIndividuals.get(i));
+            }
+        }
 
-            Tour parent1 = new Tour();
-            Tour parent2 = new Tour();
+        for (int i = numberOfEliteIndividuals; i < newPopulation.getSize(); i++) {
 
-            Tour[] parents = _tournamentDomainService.tournament(population,Constants.TOURNAMENT_SIZE);
+            ArrayList<Tour> parents = _tournamentDomainService.tournament(population,Constants.TOURNAMENT_SIZE);
 
-            Tour child = _tourMixerDomainService.crossover(parents[0], parents[1]);
+            Tour child = _tourMixerDomainService.crossover(parents.get(0), parents.get(1));
 
             newPopulation.saveTour(i, child);
         }

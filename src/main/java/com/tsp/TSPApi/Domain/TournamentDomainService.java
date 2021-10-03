@@ -6,6 +6,8 @@ import com.tsp.TSPApi.Helpers.IGeneticsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 public class TournamentDomainService implements ITournamentDomainService{
 
@@ -15,7 +17,7 @@ public class TournamentDomainService implements ITournamentDomainService{
     @Autowired
     private IPopulationDomainService _populationDomainService;
 
-    public Tour[] tournament(Population population, int tournamentSize){
+    public ArrayList<Tour> tournament(Population population, int tournamentSize){
 
         if(tournamentSize <= 0){
             throw new IllegalArgumentException("Tournament size must be a positive number.");
@@ -29,6 +31,6 @@ public class TournamentDomainService implements ITournamentDomainService{
             tournamentPool.saveTour(i, population.getTour(startOfPool + i));
         }
 
-        return _populationDomainService.getFittestPair(tournamentPool);
+        return _populationDomainService.getFittestIndividuals(tournamentPool, 2);
     }
 }

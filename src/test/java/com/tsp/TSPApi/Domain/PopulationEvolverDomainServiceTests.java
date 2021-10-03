@@ -1,6 +1,6 @@
 package com.tsp.TSPApi.Domain;
 
-import com.tsp.TSPApi.Entities.Constants;
+import com.tsp.TSPApi.Builders.PopulationBuilder;
 import com.tsp.TSPApi.Entities.Domain.Population;
 import com.tsp.TSPApi.Entities.Domain.Tour;
 import com.tsp.TSPApi.Entities.Domain.TourManager;
@@ -14,7 +14,9 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
@@ -23,11 +25,17 @@ import static org.mockito.ArgumentMatchers.any;
 @SpringBootTest
 public class PopulationEvolverDomainServiceTests {
 
+    @Mock
+    private ITournamentDomainService _tournamentDomainServiceMocks;
+
+    @Mock
+    private ITourMixerDomainService _tourMixerDomainServiceMock;
+
     @Autowired
     private static ITourManagerInitializer _tourManagerInitializer;
 
-    @Autowired
-    private IPopulationDomainService _populationDomainService;
+    @Mock
+    private IPopulationDomainService _populationDomainServiceMock;
 
     @Autowired
     @InjectMocks
@@ -46,18 +54,56 @@ public class PopulationEvolverDomainServiceTests {
     }
 
     @Test
-    public void EvolvePopulation_HappyPath_ReturnsNewPopulationWithNonEmptyTours(){
+    public void EvolvePopulation_PositiveNumberOfEliteIndividuals_ElitismIsCorrectlyApplied(){
         // Arrange
-        Population population = _populationDomainService.InitializePopulation(Constants.POPULATION_SIZE);
+        int numberOfEliteIndividuals = 2;
+        Population population = new PopulationBuilder().build();
+        ArrayList<Tour> parents = new ArrayList<Tour>(){
+            {
+                add(new Tour());
+                add(new Tour());
+            }
+        };
+
+        ArrayList<Tour> fittestIndividuals = new ArrayList<Tour>(){
+            {
+                add(population.getTour(2));
+                add(population.getTour(4));
+            }
+        };
+
+        when(_tournamentDomainServiceMocks.tournament(any(Population.class),anyInt())).thenReturn(parents);
+        when(_tourMixerDomainServiceMock.crossover(any(Tour.class),any(Tour.class))).thenReturn(new Tour());
+        when(_populationDomainServiceMock.getFittestIndividuals(population, numberOfEliteIndividuals)).thenReturn(fittestIndividuals);
 
         // Act
-        for(int i = 0; i < Constants.NUMBER_GENERATIONS; i++){
-            population = _populationEvolverDomainService.evolvePopulation(population);
-        }
+        Population newPopulation = _populationEvolverDomainService.evolvePopulation(population,numberOfEliteIndividuals);
 
         // Assert
-        for(int i = 0; i < population.getSize(); i++){
-            assertTrue(population.getTour(i).getSize() > 0);
-        }
+        // Elite individuals are the first individuals of the new generation.
+        assertEquals(population.getTour(2),newPopulation.getTour(0));
+        assertEquals(population.getTour(4),newPopulation.getTour(1));
+    }
+
+    @Test
+    public void EvolvePopulation_ZeroEliteIndividuals_ElitismIsNotApplied(){
+        // Arrange
+        int numberOfEliteIndividuals = 0;
+        Population population = new PopulationBuilder().build();
+        ArrayList<Tour> parents = new ArrayList<Tour>(){
+            {
+                add(new Tour());
+                add(new Tour());
+            }
+        };
+
+        when(_tournamentDomainServiceMocks.tournament(any(Population.class),anyInt())).thenReturn(parents);
+        when(_tourMixerDomainServiceMock.crossover(any(Tour.class),any(Tour.class))).thenReturn(new Tour());
+
+        // Act
+        Population newPopulation = _populationEvolverDomainService.evolvePopulation(population,numberOfEliteIndividuals);
+
+        // Assert
+        verify(_populationDomainServiceMock,times(0)).getFittestIndividuals(population,0);
     }
 }

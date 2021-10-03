@@ -4,5 +4,5 @@ import com.tsp.TSPApi.Entities.Domain.Population;
 
 public interface IPopulationEvolverDomainService {
 
-    Population evolvePopulation(Population population);
+    Population evolvePopulation(Population population,int numberOfEliteIndividuals);
 }

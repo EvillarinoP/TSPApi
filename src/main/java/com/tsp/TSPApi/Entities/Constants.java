@@ -8,4 +8,5 @@ public class Constants {
     public final static double MUTATION_RATE = 0.005;
     public final static int NUMBER_GENERATIONS = 10000;
     public final static int TOURNAMENT_SIZE = 30;
+    public final static int NUMBER_OF_ELITE_INDIVIDUALS = 10;
 }
