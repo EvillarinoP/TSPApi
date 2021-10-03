@@ -1,5 +1,6 @@
 package com.tsp.TSPApi.Domain;
 
+import com.tsp.TSPApi.Entities.Constants;
 import com.tsp.TSPApi.Entities.Domain.City;
 import com.tsp.TSPApi.Entities.Domain.Tour;
 import com.tsp.TSPApi.Helpers.IGeneticsHelper;
@@ -14,6 +15,20 @@ public class MutationDomainService implements IMutationDomainService{
 
     @Autowired
     private IGeneticsHelper _geneticsHelper;
+
+    public void mutate(Tour tour){
+        if(Constants.APPLY_EXCHANGE_MUTATION){
+            exchangeMutation(tour);
+        }
+
+        if(Constants.APPLY_DISPLACEMENT_MUTATION){
+            displacementMutation(tour);
+        }
+
+        if(Constants.APPLY_INVERSION_MUTATION){
+            inversionMutation(tour);
+        }
+    }
 
     public void exchangeMutation(Tour tour) {
 
