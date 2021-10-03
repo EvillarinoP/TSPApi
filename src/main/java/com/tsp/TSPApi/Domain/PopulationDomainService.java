@@ -2,7 +2,6 @@ package com.tsp.TSPApi.Domain;
 
 import com.tsp.TSPApi.Entities.Domain.Population;
 import com.tsp.TSPApi.Entities.Domain.Tour;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

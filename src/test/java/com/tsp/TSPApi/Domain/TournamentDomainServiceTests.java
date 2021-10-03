@@ -1,8 +1,6 @@
 package com.tsp.TSPApi.Domain;
 
 import com.tsp.TSPApi.Builders.TourBuilder;
-import com.tsp.TSPApi.Entities.Constants;
-import com.tsp.TSPApi.Entities.Domain.City;
 import com.tsp.TSPApi.Entities.Domain.Population;
 import com.tsp.TSPApi.Entities.Domain.Tour;
 import com.tsp.TSPApi.Helpers.IGeneticsHelper;
@@ -16,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;

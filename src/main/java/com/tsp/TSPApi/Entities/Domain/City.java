@@ -2,9 +2,6 @@ package com.tsp.TSPApi.Entities.Domain;
 
 import lombok.Setter;
 
-/**
- * City Entity
- */
 public class City {
 
     @Setter
