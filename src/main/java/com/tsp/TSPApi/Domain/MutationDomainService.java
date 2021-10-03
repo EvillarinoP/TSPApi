@@ -77,7 +77,6 @@ public class MutationDomainService implements IMutationDomainService{
             int insertedElements = 0;
 
             for(int i = 0; i < tour.getSize(); i++){
-
                 if(i < displacementGene || i >= displacementGene + subRoute1.size()){
                     tour.saveCity(i,subRoute2.get(i-insertedElements));
                 }

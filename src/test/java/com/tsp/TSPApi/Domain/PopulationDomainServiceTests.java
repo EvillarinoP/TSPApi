@@ -1,7 +1,6 @@
 package com.tsp.TSPApi.Domain;
 
 import com.tsp.TSPApi.Builders.PopulationBuilder;
-import com.tsp.TSPApi.Builders.TourBuilder;
 import com.tsp.TSPApi.Entities.Domain.City;
 import com.tsp.TSPApi.Entities.Domain.Population;
 import com.tsp.TSPApi.Entities.Domain.Tour;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,29 +28,6 @@ public class PopulationDomainServiceTests {
         for (int i=1; i<=NUM_CITIES; i++) {
             TourManager.addCity(new City(i+"", 0, 0));
         }
-    }
-
-    @Test
-    public void InitializePopulation_GivenPositivePopulationSize_PopulationHasNonEmptyTours(){
-        // Arrange
-        int popSize = 10;
-
-        // Act
-        Population population = _populationDomainService.InitializePopulation(popSize);
-        
-        // Assert
-        for (Tour tour : population.getTours()) {
-            assertTrue(tour.getSize() > 0);
-        }
-    }
-
-    @Test
-    public void InitializePopulation_GivenNegativePopulationSize_ThrowsIllegalArgumentException(){
-        // Arrange
-        int popSize = -10;
-
-        // Act & Assert
-        assertThrows(IllegalArgumentException.class, () -> _populationDomainService.InitializePopulation(popSize));
     }
 
     @Test

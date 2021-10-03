@@ -3,6 +3,7 @@ package com.tsp.TSPApi.Application;
 import com.tsp.TSPApi.Domain.IMutationDomainService;
 import com.tsp.TSPApi.Domain.IPopulationDomainService;
 import com.tsp.TSPApi.Domain.IPopulationEvolverDomainService;
+import com.tsp.TSPApi.Domain.IPopulationInitializerDomainService;
 import com.tsp.TSPApi.Entities.Constants;
 import com.tsp.TSPApi.Entities.Domain.Population;
 import com.tsp.TSPApi.Entities.DTOs.RouteResponse;
@@ -15,22 +16,25 @@ import org.springframework.stereotype.Component;
 public class RouteApplicationService implements IRouteApplicationService {
 
     @Autowired
-    ITourManagerInitializer _tourManagerInitializer;
+    private ITourManagerInitializer _tourManagerInitializer;
 
     @Autowired
-    IPopulationDomainService _populationDomainService;
+    private IPopulationDomainService _populationDomainService;
 
     @Autowired
-    IPopulationEvolverDomainService _populationEvolverDomainService;
+    private IPopulationInitializerDomainService _populationInitializerDomainService;
 
     @Autowired
-    IMutationDomainService _mutationDomainService;
+    private IPopulationEvolverDomainService _populationEvolverDomainService;
+
+    @Autowired
+    private IMutationDomainService _mutationDomainService;
 
     public RouteResponse calculateRouteGA(){
 
         _tourManagerInitializer.InitializeTourManager();
 
-        Population population = _populationDomainService.InitializePopulation(Constants.POPULATION_SIZE);
+        Population population = _populationInitializerDomainService.InitializePopulation(Constants.POPULATION_SIZE);
 
         for(int i = 0; i < Constants.NUMBER_GENERATIONS; i++){
             population = _populationEvolverDomainService.evolvePopulation(population,Constants.NUMBER_OF_ELITE_INDIVIDUALS);

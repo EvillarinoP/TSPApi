@@ -17,9 +17,9 @@ public class TspApiApplicationTests {
     @Autowired
     private IRouteApplicationService _service;
 
-    @Test
+    /*@Test
     public void ObtainResults(){
 
             _service.calculateRouteGA();
-    }
+    }*/
 }
