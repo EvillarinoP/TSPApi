@@ -6,4 +6,6 @@ public interface IMutationDomainService {
     void exchangeMutation(Tour tour);
 
     void displacementMutation(Tour tour);
+
+    void inversionMutation(Tour tour);
 }

@@ -111,4 +111,36 @@ public class MutationDomainServiceTests {
         assertEquals(cityE,tour.getCity(4));
         assertEquals(cityF,tour.getCity(5));
     }
+
+    @Test
+    public void InversionMutation_MutationHappens_MutationIsCorrectlyApplied(){
+        // Arrange
+        City cityA = new CityBuilder().withName("CityA").build();
+        City cityB = new CityBuilder().withName("CityB").build();
+        City cityC = new CityBuilder().withName("CityC").build();
+        City cityD = new CityBuilder().withName("CityD").build();
+        City cityE = new CityBuilder().withName("CityE").build();
+        City cityF = new CityBuilder().withName("CityF").build();
+        ArrayList<City> cities = new ArrayList<City>(){
+            {
+                add(cityA); add(cityB);add(cityC);add(cityD);add(cityE);add(cityF);
+            }
+        };
+
+        Tour tour = new TourBuilder().withCities(cities).build();
+
+        when(_geneticsHelperMock.mutationHappened()).thenReturn(true);
+        when(_geneticsHelperMock.selectGene(anyInt())).thenReturn(0).thenReturn(4);
+
+        // Act
+        _mutationDomainService.inversionMutation(tour);
+
+        // Assert
+        assertEquals(cityA,tour.getCity(0));
+        assertEquals(cityD,tour.getCity(1));
+        assertEquals(cityC,tour.getCity(2));
+        assertEquals(cityB,tour.getCity(3));
+        assertEquals(cityE,tour.getCity(4));
+        assertEquals(cityF,tour.getCity(5));
+    }
 }

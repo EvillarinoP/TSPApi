@@ -38,9 +38,7 @@ public class MutationDomainService implements IMutationDomainService{
         int endGene = _geneticsHelper.selectGene(tour.getSize());
 
         if(startGene > endGene){
-            int aux = startGene;
-            startGene = endGene;
-            endGene = aux;
+            swapGenes(startGene,endGene);
         }
 
         ArrayList<City> subRoute1 = new ArrayList<>();
@@ -71,5 +69,35 @@ public class MutationDomainService implements IMutationDomainService{
                 i += subRoute1.size() - 1;
             }
         }
+    }
+
+    public void inversionMutation(Tour tour){
+
+        int startGene = _geneticsHelper.selectGene(tour.getSize());
+        int endGene = _geneticsHelper.selectGene(tour.getSize());
+
+        if(startGene > endGene){
+            swapGenes(startGene,endGene);
+        }
+
+        //Extract and invert subroute
+        int j = startGene + 1;
+        for (int i = tour.getSize() - 1; i > 0; i--) {
+            if (i > startGene && i < endGene) {
+                City auxCity = tour.getCity(i);
+                tour.saveCity(i,tour.getCity(j));
+                tour.saveCity(j, auxCity);
+                j++;
+                if(j > endGene/2){
+                    break;
+                }
+            }
+        }
+    }
+
+    private void swapGenes(int geneA, int geneB){
+        int aux = geneA;
+        geneA = geneB;
+        geneB = aux;
     }
 }
