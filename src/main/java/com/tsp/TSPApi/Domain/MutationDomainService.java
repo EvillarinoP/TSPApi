@@ -17,6 +17,7 @@ public class MutationDomainService implements IMutationDomainService{
     private IGeneticsHelper _geneticsHelper;
 
     public void mutate(Tour tour){
+
         if(Constants.APPLY_EXCHANGE_MUTATION){
             exchangeMutation(tour);
         }
@@ -49,62 +50,72 @@ public class MutationDomainService implements IMutationDomainService{
 
     public void displacementMutation(Tour tour){
 
-        int startGene = _geneticsHelper.selectGene(tour.getSize());
-        int endGene = _geneticsHelper.selectGene(tour.getSize());
-
-        if(startGene > endGene){
-            swapGenes(startGene,endGene);
-        }
-
-        ArrayList<City> subRoute1 = new ArrayList<>();
-        ArrayList<City> subRoute2 = new ArrayList<>();
-
-        for (int i = 0; i < tour.getSize(); i++) {
-            if (i > startGene && i < endGene) {
-                subRoute1.add(tour.getCity(i));
+        for(int startGene = 0; startGene < tour.getSize(); startGene++){
+            if(!_geneticsHelper.mutationHappened()){
+                continue;
             }
-            else {
-                subRoute2.add(tour.getCity(i));
+
+            int endGene = _geneticsHelper.selectGene(tour.getSize());
+
+            if(startGene > endGene){
+                swapGenes(startGene,endGene);
             }
-        }
 
-        int displacementGene = _geneticsHelper.selectGene(subRoute1.size());
-        int insertedElements = 0;
+            ArrayList<City> subRoute1 = new ArrayList<>();
+            ArrayList<City> subRoute2 = new ArrayList<>();
 
-        for(int i = 0; i < tour.getSize(); i++){
-
-            if(i < displacementGene || i >= displacementGene + subRoute1.size()){
-                tour.saveCity(i,subRoute2.get(i-insertedElements));
-            }
-            else{
-                for(int j = 0; j < subRoute1.size(); j++){
-                    tour.saveCity(i+j,subRoute1.get(j));
+            for (int i = 0; i < tour.getSize(); i++) {
+                if (i > startGene && i < endGene) {
+                    subRoute1.add(tour.getCity(i));
                 }
-                insertedElements = subRoute1.size();
-                i += subRoute1.size() - 1;
+                else {
+                    subRoute2.add(tour.getCity(i));
+                }
+            }
+
+            int displacementGene = _geneticsHelper.selectGene(subRoute1.size());
+            int insertedElements = 0;
+
+            for(int i = 0; i < tour.getSize(); i++){
+
+                if(i < displacementGene || i >= displacementGene + subRoute1.size()){
+                    tour.saveCity(i,subRoute2.get(i-insertedElements));
+                }
+                else{
+                    for(int j = 0; j < subRoute1.size(); j++){
+                        tour.saveCity(i+j,subRoute1.get(j));
+                    }
+                    insertedElements = subRoute1.size();
+                    i += subRoute1.size() - 1;
+                }
             }
         }
     }
 
     public void inversionMutation(Tour tour){
 
-        int startGene = _geneticsHelper.selectGene(tour.getSize());
-        int endGene = _geneticsHelper.selectGene(tour.getSize());
+        for(int startGene = 0; startGene < tour.getSize(); startGene++) {
+            if(!_geneticsHelper.mutationHappened()){
+                continue;
+            }
 
-        if(startGene > endGene){
-            swapGenes(startGene,endGene);
-        }
+            int endGene = _geneticsHelper.selectGene(tour.getSize());
 
-        //Extract and invert subroute
-        int j = startGene + 1;
-        for (int i = tour.getSize() - 1; i > 0; i--) {
-            if (i > startGene && i < endGene) {
-                City auxCity = tour.getCity(i);
-                tour.saveCity(i,tour.getCity(j));
-                tour.saveCity(j, auxCity);
-                j++;
-                if(j > endGene/2){
-                    break;
+            if (startGene > endGene) {
+                swapGenes(startGene, endGene);
+            }
+
+            //Extract and invert subroute
+            int j = startGene + 1;
+            for (int i = tour.getSize() - 1; i > 0; i--) {
+                if (i > startGene && i < endGene) {
+                    City auxCity = tour.getCity(i);
+                    tour.saveCity(i, tour.getCity(j));
+                    tour.saveCity(j, auxCity);
+                    j++;
+                    if (j > endGene / 2) {
+                        break;
+                    }
                 }
             }
         }

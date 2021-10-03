@@ -97,8 +97,8 @@ public class MutationDomainServiceTests {
 
         Tour tour = new TourBuilder().withCities(cities).build();
 
-        when(_geneticsHelperMock.mutationHappened()).thenReturn(true);
-        when(_geneticsHelperMock.selectGene(anyInt())).thenReturn(1).thenReturn(4).thenReturn(1);
+        when(_geneticsHelperMock.mutationHappened()).thenReturn(false).thenReturn(true);
+        when(_geneticsHelperMock.selectGene(anyInt())).thenReturn(4).thenReturn(1);
 
         // Act
         _mutationDomainService.displacementMutation(tour);
@@ -129,8 +129,8 @@ public class MutationDomainServiceTests {
 
         Tour tour = new TourBuilder().withCities(cities).build();
 
-        when(_geneticsHelperMock.mutationHappened()).thenReturn(true);
-        when(_geneticsHelperMock.selectGene(anyInt())).thenReturn(0).thenReturn(4);
+        when(_geneticsHelperMock.mutationHappened()).thenReturn(true).thenReturn(false);
+        when(_geneticsHelperMock.selectGene(anyInt())).thenReturn(4);
 
         // Act
         _mutationDomainService.inversionMutation(tour);
