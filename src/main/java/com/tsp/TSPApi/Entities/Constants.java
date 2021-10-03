@@ -7,9 +7,9 @@ public class Constants {
 
     public final static double MUTATION_RATE = 0.005;
     public final static int NUMBER_GENERATIONS = 10000;
-    public final static int TOURNAMENT_SIZE = 10;
+    public final static int TOURNAMENT_SIZE = 90;
     public final static int NUMBER_OF_ELITE_INDIVIDUALS = 90;
     public final static boolean APPLY_EXCHANGE_MUTATION = true;
-    public final static boolean APPLY_DISPLACEMENT_MUTATION = false;
-    public final static boolean APPLY_INVERSION_MUTATION = false;
+    public final static boolean APPLY_DISPLACEMENT_MUTATION = true;
+    public final static boolean APPLY_INVERSION_MUTATION = true;
 }

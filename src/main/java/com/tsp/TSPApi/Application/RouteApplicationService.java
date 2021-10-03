@@ -38,6 +38,9 @@ public class RouteApplicationService implements IRouteApplicationService {
             for (int j = 0; j < population.getSize(); j++) {
                 _mutationDomainService.exchangeMutation(population.getTour(j));
             }
+
+            // Uncomment for result extraction.
+            //System.out.println(_populationDomainService.getFittestTour(population).getTourDistance());
         }
 
         return new RouteResponseBuilder()
