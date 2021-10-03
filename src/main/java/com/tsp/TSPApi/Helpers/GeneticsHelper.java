@@ -17,8 +17,4 @@ public class GeneticsHelper implements IGeneticsHelper {
     public boolean mutationHappened(){
         return Math.random() < Constants.MUTATION_RATE;
     }
-
-    public int selectGeneToMutate(int tourSize){
-        return (int) (tourSize * Math.random());
-    }
 }

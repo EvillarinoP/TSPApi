@@ -5,6 +5,4 @@ public interface IGeneticsHelper {
     int selectGene(int maxSize);
 
     boolean mutationHappened();
-
-    int selectGeneToMutate(int tourSize);
 }

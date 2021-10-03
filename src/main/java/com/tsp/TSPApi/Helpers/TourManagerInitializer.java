@@ -11,6 +11,7 @@ import java.util.Random;
 public class TourManagerInitializer implements ITourManagerInitializer{
 
     public void InitializeTourManager(){
+        TourManager.clearCities();
         Random r = new Random(1);
 
         for (int i = 1; i<= Constants.NUM_CITIES; i++) {

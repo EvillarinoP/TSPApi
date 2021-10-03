@@ -1,13 +1,20 @@
 package com.tsp.TSPApi.Entities.Domain;
 
+import lombok.Setter;
+
 /**
  * City Entity
  */
 public class City {
 
-    private final String name;
-    private final int x;
-    private final int y;
+    @Setter
+    private String name;
+
+    @Setter
+    private int x;
+
+    @Setter
+    private int y;
 
     public City(String name){
         this.name = name;
