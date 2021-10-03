@@ -33,7 +33,7 @@ public class PopulationEvolverDomainService implements IPopulationEvolverDomainS
             Tour parent1 = new Tour();
             Tour parent2 = new Tour();
 
-            Tour[] parents = _tournamentDomainService.tournament(newPopulation,Constants.TOURNAMENT_SIZE);
+            Tour[] parents = _tournamentDomainService.tournament(population,Constants.TOURNAMENT_SIZE);
 
             Tour child = _tourMixerDomainService.crossover(parents[0], parents[1]);
 
