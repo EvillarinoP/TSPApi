@@ -72,7 +72,7 @@ public class MutationDomainService implements IMutationDomainService{
                 }
             }
 
-            int displacementGene = _geneticsHelper.selectGene(subRoute1.size());
+            int displacementGene = _geneticsHelper.selectGene(subRoute2.size()-1);
             int insertedElements = 0;
 
             for(int i = 0; i < tour.getSize(); i++){

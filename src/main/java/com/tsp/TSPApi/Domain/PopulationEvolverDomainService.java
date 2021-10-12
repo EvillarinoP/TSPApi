@@ -20,6 +20,9 @@ public class PopulationEvolverDomainService implements IPopulationEvolverDomainS
     @Autowired
     private ITournamentDomainService _tournamentDomainService;
 
+    @Autowired
+    private IMutationDomainService _mutationDomainService;
+
     public Population evolvePopulation(Population population, int numberOfEliteIndividuals){
         Population newPopulation = new Population(population.getSize());
 
@@ -36,6 +39,8 @@ public class PopulationEvolverDomainService implements IPopulationEvolverDomainS
             ArrayList<Tour> parents = _tournamentDomainService.tournament(population,Constants.TOURNAMENT_SIZE);
 
             Tour child = _tourMixerDomainService.crossover(parents.get(0), parents.get(1));
+
+            _mutationDomainService.mutate(child);
 
             newPopulation.saveTour(i, child);
         }
