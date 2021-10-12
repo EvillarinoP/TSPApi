@@ -40,8 +40,6 @@ public class PopulationEvolverDomainService implements IPopulationEvolverDomainS
 
             Tour child = _tourMixerDomainService.crossover(parents.get(0), parents.get(1));
 
-            _mutationDomainService.mutate(child);
-
             newPopulation.saveTour(i, child);
         }
 

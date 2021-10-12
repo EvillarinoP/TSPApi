@@ -40,7 +40,7 @@ public class RouteApplicationService implements IRouteApplicationService {
             population = _populationEvolverDomainService.evolvePopulation(population,Constants.NUMBER_OF_ELITE_INDIVIDUALS);
 
             for (int j = 0; j < population.getSize(); j++) {
-                _mutationDomainService.exchangeMutation(population.getTour(j));
+                _mutationDomainService.mutate(population.getTour(j));
             }
 
             // Uncomment for result extraction.
