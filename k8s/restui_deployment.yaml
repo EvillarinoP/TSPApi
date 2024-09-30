@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: restui-app
+  template:
+    metadata:
+      labels:
+        app: restui-app
+    spec:
+      containers:
+        - name: restui
+          image: suhenrys/restuiapp
+          imagePullPolicy: Always
